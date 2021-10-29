@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "spatie/laravel-queue-aware",
+    "description": "Make any class queue aware",
     "keywords": [
-        ":vendor_name",
+        "Spatie",
         "laravel",
-        ":package_slug"
+        "laravel-queue-aware"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/spatie/laravel-queue-aware",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Luke Downing",
+            "email": "lukeraymonddowning@gmail.com",
             "role": "Developer"
         }
     ],
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Spatie\\QueueAware\\": "src",
+            "Spatie\\QueueAware\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Spatie\\QueueAware\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -49,10 +49,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Spatie\\QueueAware\\QueueAwareServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "QueueAware": "Spatie\\QueueAware\\QueueAwareFacade"
             }
         }
     },
