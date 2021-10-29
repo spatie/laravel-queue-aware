@@ -4,7 +4,6 @@ namespace Spatie\QueueAware;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Spatie\QueueAware\Commands\QueueAwareCommand;
 
 class QueueAwareServiceProvider extends PackageServiceProvider
 {
