@@ -21,6 +21,7 @@
         "illuminate/contracts": "^8.37"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.2",
         "nunomaduro/collision": "^5.3",
         "orchestra/testbench": "^6.15",
         "pestphp/pest": "^1.18",
@@ -41,7 +42,7 @@
     },
     "scripts": {
         "test": "./vendor/bin/pest --no-coverage",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
         "sort-packages": true
