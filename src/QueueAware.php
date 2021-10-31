@@ -55,7 +55,7 @@ final class QueueAware
     {
         app('events')->listen(
             JobProcessing::class,
-            fn (JobProcessing $event) => $this->bindInstancesInQueue($event->job->payload())
+            fn (JobProcessing $event) => $this->bindInstancesInQueue($event->job->payload(), $event)
         );
     }
 
@@ -63,15 +63,15 @@ final class QueueAware
     {
         app('events')->listen(
             JobRetryRequested::class,
-            fn (JobRetryRequested $event) => $this->bindInstancesInQueue($event->payload())
+            fn (JobRetryRequested $event) => $this->bindInstancesInQueue($event->payload(), $event)
         );
     }
 
-    private function bindInstancesInQueue(array $payload): void
+    private function bindInstancesInQueue(array $payload, JobProcessing|JobRetryRequested $event): void
     {
         collect($this->queueAwareInstances)
             ->filter(fn (MakesQueueAware $instance, string $key) => array_key_exists($key, $payload))
-            ->map(fn (MakesQueueAware $instance, string $key) => $instance->hydrate($payload[$key]))
+            ->map(fn (MakesQueueAware $instance, string $key) => $instance->hydrate($payload[$key], $event))
             ->filter()
             ->each(fn (mixed $instance, string $key) => app()->instance($key, $instance));
     }

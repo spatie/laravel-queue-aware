@@ -5,7 +5,14 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-queue-aware/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/laravel-queue-aware/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-queue-aware.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-queue-aware)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Ever had a singleton in your Laravel application that you'd *really* like access to in a queued job? 
+
+Let's take as an example an application with multiple tenants. To keep track of the tenant for the current request,
+we have a `Tenant` object bound as a singleton in our application. When we dispatch a job to the queue, we want to keep track of the 
+tenant that the job is for. But how can we do that? We don't want to store the tenant in the job itself, because that will quickly get
+repetitive. It would be much better if *every* job was automatically aware of the tenant that was active at the time of dispatching.
+
+Using this package, we can do exactly that, and it couldn't be simpler!
 
 ## Support us
 
@@ -23,31 +30,26 @@ You can install the package via composer:
 composer require spatie/laravel-queue-aware
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Spatie\QueueAware\QueueAwareServiceProvider" --tag="laravel-queue-aware-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Spatie\QueueAware\QueueAwareServiceProvider" --tag="laravel-queue-aware-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
 
+To make the queue aware of an object, you can register the object in one of your service provider's `boot` methods. We'll use the
+`Tenant` example from the previous section.
+
 ```php
-$laravel-queue-aware = new Spatie\QueueAware();
-echo $laravel-queue-aware->echoPhrase('Hello, Spatie!');
+public function boot()
+{
+    QueueAwareFacade::register(
+        Tenant::class,
+        fn () => Tenant::current()?->id,
+        fn ($tenantId) => Tenant::find($tenantId),
+    );
+}
 ```
+
+The `register` method of the `QueueAwareFacade` takes 3 parameters:
+1) The key of the singleton in the Laravel container (usually the FQCN of the object)
+2) A closure that returns the information needed to rebuild the singleton
+3) A closure that is given the data returned in step 2 and returns a new instance of the singleton
 
 ## Testing
 

@@ -28,7 +28,7 @@ final class MakesTestableSingletonQueueAware implements MakesQueueAware
         return app(TestableSingleton::class)->identifier;
     }
 
-    public function hydrate($data): mixed
+    public function hydrate($data, $event): mixed
     {
         return new TestableSingleton($data);
     }

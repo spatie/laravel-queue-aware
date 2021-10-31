@@ -24,7 +24,7 @@ final class ImplicitMakesTestableSingletonQueueAware implements MakesQueueAware
         return app(TestableSingleton::class)->identifier;
     }
 
-    public function hydrate($data): mixed
+    public function hydrate($data, $event): mixed
     {
         app()->instance($this->getContainerKey(), new TestableSingleton($data));
 

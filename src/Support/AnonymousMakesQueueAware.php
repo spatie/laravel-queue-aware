@@ -34,7 +34,7 @@ final class AnonymousMakesQueueAware implements MakesQueueAware
         return app()->call($this->dehydrator);
     }
 
-    public function hydrate($data): mixed
+    public function hydrate($data, $event): mixed
     {
         $parameters = array_keys($this->closureParameterTypes($this->hydrator));
 
