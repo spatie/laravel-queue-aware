@@ -1,8 +1,8 @@
 # Make any class queue aware
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-queue-aware.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-queue-aware)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-queue-aware/run-tests?label=tests)](https://github.com/spatie/laravel-queue-aware/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-queue-aware/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/laravel-queue-aware/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![GitHub Tests Action Status](https://github.com/spatie/laravel-queue-aware/actions/workflows/run-tests.yml/badge.svg)](https://github.com/spatie/laravel-queue-aware/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://github.com/spatie/laravel-queue-aware/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/spatie/laravel-queue-aware/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-queue-aware.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-queue-aware)
 
 Ever had a singleton in your Laravel application that you'd *really* like access to in a queued job? 
